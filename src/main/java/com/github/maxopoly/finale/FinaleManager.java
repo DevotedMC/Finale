@@ -18,14 +18,21 @@ public class FinaleManager {
 	private boolean protocolLibEnabled;
 	private Collection <Enchantment> disabledEnchantments;
 	
+	private Double splashHealth;
+	
+	private Integer strengthMultiplier;
+	
 	public FinaleManager(boolean debug, boolean attackSpeedEnabled, double attackSpeed, boolean regenHandlerEnabled,
-			SaturationHealthRegenHandler regenHandler,WeaponModifier weaponModifier, Collection <Enchantment> disabledEnchants) {
+			SaturationHealthRegenHandler regenHandler,WeaponModifier weaponModifier, Collection <Enchantment> disabledEnchants,
+			Double splashHealth, Integer strengthMultiplier) {
 		this.attackSpeedEnabled = attackSpeedEnabled;
 		this.attackSpeed = attackSpeed;
 		this.regenHandlerEnabled = regenHandlerEnabled;
 		this.regenHandler = regenHandler;
 		this.weaponModifier = weaponModifier;
 		this.disabledEnchantments = disabledEnchants;
+		this.splashHealth = splashHealth;
+		this.strengthMultiplier = strengthMultiplier;
 	}
 	
 	public boolean isDebug() {
@@ -54,5 +61,13 @@ public class FinaleManager {
 	
 	public boolean isDisabledEnchantment(Enchantment enchant) {
 		return disabledEnchantments.contains(enchant);
+	}
+	
+	public Double getSplashHealth() {
+		return splashHealth;
+	}
+	
+	public Integer getStrengthMultiplier() {
+		return strengthMultiplier;
 	}
 }

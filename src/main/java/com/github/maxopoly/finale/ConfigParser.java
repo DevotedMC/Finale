@@ -47,9 +47,14 @@ public class ConfigParser {
 		WeaponModifier weapMod = parseWeaponModification(config.getConfigurationSection("weaponModification"));
 		
 		Collection <Enchantment> disabledEnchants = parseDisableEnchantments(config);
+		
+		Double splashHealth = config.contains("gameplay.splashHealthModifier") ? config.getDouble("gameplay.splashHealthModifier", 0.0d) : null;
 
+		Integer strengthMultiplier = config.contains("gameplay.strengthMultiplier") ? config.getInt("gameplay.strengthMultiplier", 0) : null;
+		
 		// Initialize the manager
-		manager = new FinaleManager(debug, attackEnabled, attackSpeed, regenEnabled, regenhandler, weapMod, disabledEnchants);
+		manager = new FinaleManager(debug, attackEnabled, attackSpeed, regenEnabled, regenhandler, weapMod, disabledEnchants, splashHealth,
+				strengthMultiplier);
 		return manager;
 	}
 

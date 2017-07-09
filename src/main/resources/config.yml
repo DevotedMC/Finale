@@ -17,6 +17,13 @@ pearls:
   cooldown: 10s
   combatTag: true
   refundBlockedPearls: true
+# alters the effect of various specific gameplay elements related to combat
+gameplay:
+#  Modify how much each splash health heals. Don't specify or set to 0 to disable. Version specific, do some research.
+# splashHealthModifier: 0.0
+#  Integer reassignment of strength's impact; if set to 3, should approximate 1.6 strength. Do not assign at all to disable.
+# strengthMultiplier: 3
+
   
 #allows adjusting the attack damage of any item by its spigot material identifier
 weaponModification:

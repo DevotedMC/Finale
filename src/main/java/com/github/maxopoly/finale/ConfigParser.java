@@ -51,10 +51,10 @@ public class ConfigParser {
 		Double splashHealth = config.contains("gameplay.splashHealthModifier") ? config.getDouble("gameplay.splashHealthModifier", 0.0d) : null;
 
 		Integer strengthMultiplier = config.contains("gameplay.strengthMultiplier") ? config.getInt("gameplay.strengthMultiplier", 0) : null;
-		
+		Integer weaknessMultiplier = config.contains("gameplay.weaknessMultiplier") ? config.getInt("gameplay.weaknessMultiplier", 0) : null;
 		// Initialize the manager
 		manager = new FinaleManager(debug, attackEnabled, attackSpeed, regenEnabled, regenhandler, weapMod, disabledEnchants, splashHealth,
-				strengthMultiplier);
+				strengthMultiplier, weaknessMultiplier);
 		return manager;
 	}
 

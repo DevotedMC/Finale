@@ -120,10 +120,11 @@ public class PlayerListener implements Listener {
 	}
 	
 	// ================================================
-	// Changes Strength Potions, strength_multiplier 3 is roughly Pre-1.6 Level
+	// Changes Strength Potions, updated for 1.9+ mechanics.
+	// Multiplier highly recommended for Civ servers.
 
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-	public void onPlayerDamage(EntityDamageByEntityEvent event) {
+	public void onPlayerStrengthDamage(EntityDamageByEntityEvent event) {
 		Integer strengthMultiplier = manager.getStrengthMultiplier();
 		if (strengthMultiplier == null) {
 			return;
@@ -137,8 +138,8 @@ public class PlayerListener implements Listener {
 			for (PotionEffect effect : player.getActivePotionEffects()) {
 				if (effect.getType().equals(PotionEffectType.INCREASE_DAMAGE)) {
 					final int potionLevel = effect.getAmplifier() + 1;
-					final double unbuffedDamage = event.getDamage() / (1.3 * potionLevel + 1);
-					final double newDamage = unbuffedDamage + (potionLevel * strengthMultiplier);
+					final double unbuffedDamage = event.getDamage() - (3 * potionLevel);
+					final double newDamage = unbuffedDamage + (strengthMultiplier * potionLevel);
 					event.setDamage(newDamage);
 					break;
 				}
@@ -146,6 +147,33 @@ public class PlayerListener implements Listener {
 		}
 	}
 	
+	// ================================================
+	// Changes Weakness Potions, updated for 1.9+ mechanics.
+
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	public void onPlayerWeaknessDamage(EntityDamageByEntityEvent event) {
+		Integer weaknessMultiplier = manager.getWeaknessMultiplier();
+		if (weaknessMultiplier == null) {
+			return;
+		}
+		if (!(event.getDamager() instanceof Player)) {
+			return;
+		}
+		Player player = (Player) event.getDamager();
+		
+		if (player.hasPotionEffect(PotionEffectType.WEAKNESS)) {
+			for (PotionEffect effect : player.getActivePotionEffects()) {
+				if (effect.getType().equals(PotionEffectType.WEAKNESS)) {
+					final int potionLevel = effect.getAmplifier() + 1;
+					final double undebuffedDamage = event.getDamage() + (4 * potionLevel);
+					final double newDamage = undebuffedDamage - (potionLevel * weaknessMultiplier);
+					event.setDamage(newDamage);
+					break;
+				}
+			}
+		}
+	}
+	 
 	//@EventHandler
 	public void arrowHit(EntityDamageByEntityEvent e) {
 		if (!(e.getEntity() instanceof LivingEntity)) {

@@ -21,10 +21,11 @@ public class FinaleManager {
 	private Double splashHealth;
 	
 	private Integer strengthMultiplier;
+	private Integer weaknessMultiplier;
 	
 	public FinaleManager(boolean debug, boolean attackSpeedEnabled, double attackSpeed, boolean regenHandlerEnabled,
 			SaturationHealthRegenHandler regenHandler,WeaponModifier weaponModifier, Collection <Enchantment> disabledEnchants,
-			Double splashHealth, Integer strengthMultiplier) {
+			Double splashHealth, Integer strengthMultiplier, Integer weaknessMultiplier) {
 		this.attackSpeedEnabled = attackSpeedEnabled;
 		this.attackSpeed = attackSpeed;
 		this.regenHandlerEnabled = regenHandlerEnabled;
@@ -33,6 +34,7 @@ public class FinaleManager {
 		this.disabledEnchantments = disabledEnchants;
 		this.splashHealth = splashHealth;
 		this.strengthMultiplier = strengthMultiplier;
+		this.weaknessMultiplier = weaknessMultiplier;
 	}
 	
 	public boolean isDebug() {
@@ -69,5 +71,9 @@ public class FinaleManager {
 	
 	public Integer getStrengthMultiplier() {
 		return strengthMultiplier;
+	}
+
+	public Integer getWeaknessMultiplier() {
+		return weaknessMultiplier;
 	}
 }

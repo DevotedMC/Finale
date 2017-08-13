@@ -166,7 +166,7 @@ public class PlayerListener implements Listener {
 				if (effect.getType().equals(PotionEffectType.WEAKNESS)) {
 					final int potionLevel = effect.getAmplifier() + 1;
 					final double undebuffedDamage = event.getDamage() + (4 * potionLevel);
-					final double newDamage = undebuffedDamage + (potionLevel * weaknessMultiplier);
+					final double newDamage = undebuffedDamage - (potionLevel * weaknessMultiplier);
 					event.setDamage(newDamage);
 					break;
 				}
